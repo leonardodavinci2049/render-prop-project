@@ -26,13 +26,12 @@
   *,
   *::before,
   *::after {
-    box-sizing: inherit; /* Herda box-sizing: border-box de html */
+    box-sizing: border-box;
   }
   body {
-    height: 100vh;
-    color: var(--color-text);
-    background-color: var(--color-background-900);
-    padding: 2.4rem;
+    font-family: sans-serif;
+    margin: 32px;
+    color: #333;
   }
 }
 

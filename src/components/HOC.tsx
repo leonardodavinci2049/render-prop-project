@@ -4,9 +4,7 @@ import { useState, ComponentType } from "react";
 interface ListProps<T> {
   title: string;
   items: T[];
-
 }
-
 
 // HOC com tipagem adequada
 const HOC = <T, P extends ListProps<T>>(WrappedComponent: ComponentType<P>) => {

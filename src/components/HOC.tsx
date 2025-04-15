@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, ComponentType } from "react";
+
+// Definindo interfaces para melhor tipagem
+interface ListProps<T> {
+  title: string;
+  items: T[];
+
+}
 
 
-import { ComponentType } from "react";
-
-const HOC = (WrappedComponent: ComponentType<any>) => {
-
-  return function List(props: { items: any[]; title: string }) {
+// HOC com tipagem adequada
+const HOC = <T, P extends ListProps<T>>(WrappedComponent: ComponentType<P>) => {
+  // O tipo de retorno explícito ajuda na inferência
+  return function List(props: P) {
     const [isOpen, setIsOpen] = useState(true);
     const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -27,11 +33,11 @@ const HOC = (WrappedComponent: ComponentType<any>) => {
         {isOpen && <WrappedComponent {...props} items={displayItems} />}
 
         <button onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}>
-          {isCollapsed ? `Show all ${props.items.length}` : "Show less"}
+          {/* Conteúdo do botão */}
         </button>
       </div>
     );
   };
-}
+};
 
-export default HOC
+export default HOC;
